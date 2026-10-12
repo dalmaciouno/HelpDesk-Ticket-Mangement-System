@@ -1,8 +1,21 @@
-use Illuminate\Support\Facades\URL;
+<?php
 
-public function boot(): void
+namespace App\Providers;
+
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
 {
-    if ($this->app->environment('production')) {
-        URL::forceScheme('https');   // prevents mixed-content asset URLs
+    public function register(): void
+    {
+        //
+    }
+
+    public function boot(): void
+    {
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https'); // prevents mixed-content asset URLs
+        }
     }
 }
